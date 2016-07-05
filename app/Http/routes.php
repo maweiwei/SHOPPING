@@ -29,6 +29,18 @@ Route::get("/logout","Admin\LoginController@logout");
 //修改头像
 Route::post("/user/avartar","Admin\UserController@avartar");
 
+//用户列表页
+Route::any("/user_list","Admin\UserController@index");
+//添加用户页面
+Route::get("/admin/user/add","Admin\UserController@create");
+//执行添加
+Route::post("/admin/user/store","Admin\UserController@store");
+//编辑页面
+Route::get("/admin/user/edit/{uid}","Admin\UserController@edit");
+Route::post("/admin/user/update/{uid}","Admin\UserController@update");
+//删除用户
+Route::get("/admin/user/delete/{uid}","Admin\UserController@destroy");
+
 //后台top
 Route::get("/top",function (){
    return view("admin.common.top"); 
@@ -43,4 +55,6 @@ Route::get("/left",function (){
 Route::get("/right",function (){
     return view("admin.common.right");
 });
+
+
 

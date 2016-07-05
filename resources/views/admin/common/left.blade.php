@@ -22,8 +22,8 @@
           </tr>
         </table>
         <ul class="MM">
-          <li><a href="http://www.865171.cn" target="main">基本设置</a></li>
-          <li><a href="http://www.865171.cn" target="main">邮件设置</a></li>
+          <li><a href="{{ url("/right") }}" target="main">用户信息</a></li>
+          <li><a href="{{ url("/user_list") }}" target="main">用户列表</a></li>
           <li><a href="http://www.865171.cn" target="main">广告设置</a></li>
           <li><a href="http://www.865171.cn" target="main">114增加</a></li>
           <li><a href="http://www.865171.cn" target="main">114管理</a></li>

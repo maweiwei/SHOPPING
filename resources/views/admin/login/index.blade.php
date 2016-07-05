@@ -1,6 +1,8 @@
 
 <title>网站管理员登陆</title>
 <link href="{{ asset("/css/admin/login/skin.css") }}" rel="stylesheet" type="text/css">
+<link href="{{ asset("/css/admin/login/login_index.css") }}" rel="stylesheet" type="text/css">
+<script src="{{ asset('/js/admin/login_index.js') }}"></script>
 <style type="text/css">
 
 body {
@@ -105,35 +107,39 @@ window.attachEvent("onload", correctPNG);
               <td>&nbsp;</td>
               <td height="21"><table cellSpacing="0" cellPadding="0" width="100%" border="0" id="table211" height="328">
                   <tr>
-                    <td height="164" colspan="2" align="middle"><form name="myform" action=" " method="post">
+                    <td height="164" colspan="2" align="middle"><form name="login" action="{{ url('/logTodo') }}" method="post">
+			<input type="hidden" name="_token" value="{{ $data['_token'] or csrf_token() }}"/>
+			
                         <table cellSpacing="0" cellPadding="0" width="100%" border="0" height="143" id="table212">
+			  
                           <tr>
                             <td width="13%" height="38" class="top_hui_text"><span class="login_txt">管理员：&nbsp;&nbsp; </span></td>
-                            <td height="38" colspan="2" class="top_hui_text"><input name="username" class="editbox4" value="" size="20">                            </td>
+                            <td height="38" colspan="2" class="top_hui_text"><input name="uname" class="editbox4" value="" size="20"><span></span></td>
                           </tr>
                           <tr>
-                            <td width="13%" height="35" class="top_hui_text"><span class="login_txt"> 密 码： &nbsp;&nbsp; </span></td>
-                            <td height="35" colspan="2" class="top_hui_text"><input class="editbox4" type="password" size="20" name="password">
-                              <img src="{{ asset("/images/admin/login/luck.gif") }}" width="19" height="18"> </td>
+                            <td width="13%" height="35" class="top_hui_text"><span class="login_txt"> 密 码： &nbsp;&nbsp</span></td>
+                            <td height="35" colspan="2" class="top_hui_text"><input class="editbox4" type="password" size="20" name="password"><span></span></td>
                           </tr>
                           <tr>
                             <td width="13%" height="35" ><span class="login_txt">验证码：</span></td>
-                            <td height="35" colspan="2" class="top_hui_text"><input class=wenbenkuang name=verifycode type=text value="" maxLength=4 size=10><img src="{{ url('/captcha')."/". rand() }}" id="code" onclick="this.src = this.src.replace(/\d+$/, '') + Math.random();" align="top" />
-                              </td>
+                            <td height="35" colspan="2" class="top_hui_text"><img src="{{ url('/captcha')."/". rand() }}" id="code" onclick="this.src = this.src.replace(/\d+$/, '') + Math.random();" align="top" />&nbsp;&nbsp;<input class="wenbenkuang" name="code" type='text' value="" maxLength=5 size=6 id="code"><span></span></td>
                           </tr>
                           <tr>
                             <td height="35" >&nbsp;</td>
-                            <td width="20%" height="35" ><input name="Submit" type="submit" class="button" id="Submit" value="登 陆"> </td>
-                            <td width="67%" class="top_hui_text"><input name="cs" type="button" class="button" id="cs" value="取 消" onClick="showConfirmMsg1()"></td>
+                            <td width="20%" height="35" ><input name="submit" type="submit" class="button" id="Submit" value="登 陆">&nbsp;&nbsp; <input name="cs" type="reset" class="button" id="cs" value="重 置" onClick="showConfirmMsg1()"> </td>
+                            <td width="67%" class="top_hui_text"></td>
                           </tr>
                         </table>
                         <br>
-                    </form></td>
+                    </form>
+			<script src="{{ asset('/js/admin/login_index.js') }}"></script>
+		    </td>
                   </tr>
                   <tr>
                     <td width="433" height="164" align="right" valign="bottom"><img src="{{ asset("/images/admin/login/login-wel.gif") }}" width="242" height="138"></td>
                     <td width="57" align="right" valign="bottom">&nbsp;</td>
                   </tr>
+		  <font color="red" font-size=13>{{ session("info") }}</font>
               </table></td>
             </tr>
           </table>

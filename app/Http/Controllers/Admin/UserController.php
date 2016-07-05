@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use DB,Hash,Session;
 class UserController extends Controller
 {
     /**
@@ -14,9 +14,15 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        //用户列表
+	$keyword = $request->get("keyword");
+	$users = DB::table("user")
+		->where("uname","like","%".$keyword."%")
+		->orWhere("nickname","like","%".$keyword."%")
+		->paginate(5);
+	return view("admin/common/user_list",compact("users"))->with("key",$keyword);
     }
 
     /**
@@ -26,7 +32,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        //添加用户页面
+	return view("admin/user/add");
     }
 
     /**
@@ -37,7 +44,28 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //添加用户
+	$this->validate($request,[
+	   "uname"=>"required|unique:user",
+	    "password"=>"required|between:6,15",
+	    "repassword"=>"required|same:password",
+	    "nickname"=>"required"
+	],[
+	    "uname.required"=>"账户不能为空",
+	    "uname.unique"=>"账户已存在",
+	    "nickname.required"=>"昵称不能为空",
+	    "password.required"=>"密码不能为空",
+	    "repassword.same"=>"两次输入密码不一致",
+	    "repassword.required"=>"确认密码不能为空",
+	    "password.between"=>"密码长度6-15位"
+	]);
+	$data = $request->except("_token","repassword");
+	$data["password"]=Hash::make($data["password"]);
+	if(DB::table("user")->insert($data)){
+	    return redirect("/user_list");
+	} else {
+	    return back()->with(["info"=>"插入失败"]);
+	}
     }
 
     /**
@@ -59,7 +87,10 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        //编辑页面
+	$user = DB::table("user")->where("uid",$id)->first();
+	return view("admin/user/edit",compact("user"));
+	
     }
 
     /**
@@ -71,7 +102,28 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //修改入库
+	$data = $request->all();
+	$this->validate($request,[
+	    "password"=>"between:6,15",
+	    "repassword"=>"same:password",
+	    "nickname"=>"required"
+	],[
+	    "password.between"=>"密码长度应该在6-15位！",
+	    "repassword.same"=>"两次密码不一致！",
+	    "nickname.required"=>"昵称不能为空！"
+	]);
+	$data = $request->except("_token","repassword","uname");
+	if(!empty($data["password"])){
+	    $data["password"]=Hash::make($data[password]);
+	} else {
+	    unset($data["password"]);
+	}
+	if(DB::table("user")->where("uid",$id)->update($data)){
+	    return redirect("/user_list");
+	} else {
+	    return back()->with(["info"=>"/(ㄒoㄒ)/~~修改失败!"]);
+	}
     }
 
     /**
@@ -82,7 +134,12 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //删除用户
+	if (DB::table("user")->where("uid",$id)->delete()){
+	    return redirect("/user_list")->with(["info"=>":-D删除成功"]);
+	} else {
+	    return back()->with(["info"=>"/(ㄒoㄒ)/~~删除失败"]);
+	}
     }
     
     public function avartar(Request $request)
