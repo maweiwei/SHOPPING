@@ -56,5 +56,11 @@ Route::get("/right",function (){
     return view("admin.common.right");
 });
 
+//前台首页
+Route::get("/Home","Home\IndexController@index");
 
+//前台登录
+Route::get("/Home/login","Home\LoginController@index");
 
+//前台注册
+Route::get("/Home/create","Home\CreateController@index");
