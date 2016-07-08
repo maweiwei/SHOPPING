@@ -19,7 +19,7 @@ class LoginController extends Controller
     {
         return view("home.login.login");
     }
-    
+  
     //登录验证方法
     public function logTodo(Request $request)
     {

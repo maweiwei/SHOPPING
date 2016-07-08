@@ -40,7 +40,31 @@ Route::get("/admin/user/edit/{uid}","Admin\UserController@edit");
 Route::post("/admin/user/update/{uid}","Admin\UserController@update");
 //删除用户
 Route::get("/admin/user/delete/{uid}","Admin\UserController@destroy");
-
+//===================权限管理=====================
+Route::post("/admin/user/setGroup","Admin\UserController@setGroup");
+Route::get("/errors",function(){
+   // dd(session("info"));
+    return view("errors.error");
+});
+//============分组增删改查======================
+//分组列表详细信息显示
+Route::resource("/admin/group","Admin\GroupController");
+//分组列表里点击修改
+Route::post("/admin/group/setRule","Admin\GroupController@setRule");
+//提交修改的值
+Route::post("/admin/group/update","Admin\GroupController@update");
+//权限删除
+Route::get("/admin/group/delete/{tmp}","Admin\GroupController@destroy");
+//============权限======================
+//所有权限
+Route::resource("/admin/rule", "Admin\RuleController");
+Route::any("/admin/rule/index", "Admin\RuleController@index");
+//禁用启用
+Route::post("/admin/rule/setStatus", "Admin\RuleController@setStatus");
+//编辑
+Route::post("/admin/rule/update", "Admin\RuleController@update");
+//删除
+Route::get("/admin/rule/delete/{tmp}", "Admin\RuleController@destroy");
 //后台top
 Route::get("/top",function (){
    return view("admin.common.top"); 
@@ -66,3 +90,15 @@ Route::post("/Home/logTodo","Home\LoginController@logTodo");
 
 //前台注册
 Route::get("/Home/create","Home\CreateController@index");
+//添加用户
+Route::post("/Home/user/add","Home\CreateController@add");
+
+//前台用户列表
+Route::any("/Home/user","Home\UserController@index");
+
+//前台用户修改
+Route::get("/Home/user/edit/{uid}","Home\UserController@edit");
+Route::post("/Home/user/update/{uid}","Home\UserController@update");
+//前台用户删除
+Route::get("/Home/user/delete/{uid}","Home\UserController@destroy");
+

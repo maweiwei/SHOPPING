@@ -6,6 +6,15 @@
 <link href="css/main.css" type="text/css" rel="stylesheet" />
 <link href="/bootstrap/css/bootstrap.css" type="text/css" rel="stylesheet" />
 <link rel="shortcut icon" href="images/main/favicon.ico" />
+<script src="/uploadify/jquery-1.8.3.min.js"></script>
+ <meta name="csrf-token" content="{{ csrf_token() }}" />
+        <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        </script>
 <style>
 body{overflow-x:hidden; background:#f2f0f5; padding:15px 0px 10px 5px;}
 #searchmain{ font-size:12px;}
@@ -64,7 +73,7 @@ td.fenye li{ padding:10px 0 0 0; text-align:right;}
         <th align="center" valign="middle" class="borderright"><center>帐号</center></th>
         <th align="center" valign="middle" class="borderright"><center>昵称</center></th>
         <th align="center" valign="middle" class="borderright"><center>性别</center></th>
-        <th align="center" valign="middle" class="borderright"><center>权限</center></th>
+        <th align="center" valign="middle" class="borderright"><center>分组</center></th>
         <th align="center" valign="middle"><center>操作</center></th>
       </tr>
      @foreach($users as $tmp )
@@ -75,9 +84,15 @@ td.fenye li{ padding:10px 0 0 0; text-align:right;}
         <td align="center" valign="middle" class="borderright borderbottom">{{$tmp->nickname}}</td>
         <td align="center" valign="middle" class="borderright borderbottom">{{$tmp->sex}}</td>
         <td align="center" valign="middle" class="borderright borderbottom">
-	    <select>
-		<option checked>{{$tmp->sex}}</option>
-	    </select>
+	   <select name="groupid" uid="{{$tmp->uid}}">
+               @foreach ($groups as $group)
+               @if ($tmp->groupid == $group->id)
+               <option value="{{$group->id}}" selected>{{$group->title}}</option>
+               @else
+               <option value="{{$group->id}}">{{$group->title}}</option>
+               @endif
+               @endforeach
+           </select>
 	</td>
         <td align="center" valign="middle" class="borderbottom">
 <!--            <a href="/admin/user/add" target="_self" onFocus="this.blur()" class="add">添加</a><span class="gray">&nbsp;|&nbsp;</span>-->
@@ -95,5 +110,6 @@ td.fenye li{ padding:10px 0 0 0; text-align:right;}
    <td align="right" valign="top" class="fenye">{!!$users->appends(["keyword"=>$key])->render()!!}</td>
   </tr>
 </table>
+<script src="{{asset('/js/admin/user_group.js')}}"></script>
 </body>
 </html>
