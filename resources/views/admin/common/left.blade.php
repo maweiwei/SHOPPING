@@ -24,7 +24,7 @@
         <ul class="MM">
           <li><a href="{{ url("/right") }}" target="main">用户信息</a></li>
           <li><a href="{{ url("/user_list") }}" target="main">用户列表</a></li>
-          <li><a href="http://www.865171.cn" target="main">广告设置</a></li>
+          <li><a href="{{url("/admin/user/add")}}" target="main">添加用户</a></li>
           <li><a href="http://www.865171.cn" target="main">114增加</a></li>
           <li><a href="http://www.865171.cn" target="main">114管理</a></li>
           <li><a href="http://www.865171.cn" target="main">联系方式</a></li>
@@ -33,7 +33,7 @@
           <li><a href="http://www.865171.cn" target="main">管理链接</a></li>
         </ul>
       </div>
-      <h1 class="type"><a href="javascript:void(0)">栏目分类管理</a></h1>
+      <h1 class="type"><a href="javascript:void(0)">前台用户管理</a></h1>
       <div class="content">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
@@ -41,7 +41,7 @@
           </tr>
         </table>
         <ul class="MM">
-          <li><a href="http://www.865171.cn" target="main">信息分类</a></li>
+          <li><a href="{{url('/Home/user')}}" target="main">用户列表</a></li>
           <li><a href="http://www.865171.cn" target="main">信息类型</a></li>
           <li><a href="http://www.865171.cn" target="main">资讯分类</a></li>
           <li><a href="http://www.865171.cn" target="main">地区设置</a></li>

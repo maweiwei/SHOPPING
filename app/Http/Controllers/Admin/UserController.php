@@ -115,7 +115,7 @@ class UserController extends Controller
 	]);
 	$data = $request->except("_token","repassword","uname");
 	if(!empty($data["password"])){
-	    $data["password"]=Hash::make($data[password]);
+	    $data["password"]=Hash::make($data["password"]);
 	} else {
 	    unset($data["password"]);
 	}
