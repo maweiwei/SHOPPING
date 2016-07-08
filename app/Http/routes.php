@@ -88,11 +88,8 @@ Route::get("/Home/login","Home\LoginController@index");
 
 //前台注册
 Route::get("/Home/create","Home\CreateController@index");
-<<<<<<< HEAD
 //添加用户
 Route::post("/Home/user/add","Home\CreateController@add");
-=======
-
 //前台用户列表
 Route::any("/Home/user","Home\UserController@index");
 
@@ -101,5 +98,3 @@ Route::get("/Home/user/edit/{uid}","Home\UserController@edit");
 Route::post("/Home/user/update/{uid}","Home\UserController@update");
 //前台用户删除
 Route::get("/Home/user/delete/{uid}","Home\UserController@destroy");
-
->>>>>>> e51203bf8d95f10a3a232579f89977425b5f426f
