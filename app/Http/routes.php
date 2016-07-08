@@ -88,3 +88,13 @@ Route::get("/Home/login","Home\LoginController@index");
 
 //前台注册
 Route::get("/Home/create","Home\CreateController@index");
+
+//前台用户列表
+Route::any("/Home/user","Home\UserController@index");
+
+//前台用户修改
+Route::get("/Home/user/edit/{uid}","Home\UserController@edit");
+Route::post("/Home/user/update/{uid}","Home\UserController@update");
+//前台用户删除
+Route::get("/Home/user/delete/{uid}","Home\UserController@destroy");
+
