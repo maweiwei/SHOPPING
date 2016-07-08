@@ -19,10 +19,12 @@ class UserController extends Controller
         //用户列表
 	$keyword = $request->get("keyword");
 	$users = DB::table("user")
+                ->leftJoin("user_group", "user.uid", "=", "user_group.uid")
 		->where("uname","like","%".$keyword."%")
 		->orWhere("nickname","like","%".$keyword."%")
 		->paginate(5);
-	return view("admin/common/user_list",compact("users"))->with("key",$keyword);
+        $groups = DB::table("group_rule")->get();
+	return view("admin/common/user_list",["users" => $users,"groups" => $groups,"key"=>$keyword]);
     }
 
     /**
@@ -33,7 +35,8 @@ class UserController extends Controller
     public function create()
     {
         //添加用户页面
-	return view("admin/user/add");
+        $groups = DB::table("group_rule")->get();
+	return view("admin.user.add",["groups" => $groups]);
     }
 
     /**
@@ -59,9 +62,12 @@ class UserController extends Controller
 	    "repassword.required"=>"确认密码不能为空",
 	    "password.between"=>"密码长度6-15位"
 	]);
-	$data = $request->except("_token","repassword");
+	$data = $request->except("_token","repassword","groupid");
 	$data["password"]=Hash::make($data["password"]);
-	if(DB::table("user")->insert($data)){
+	if(false !== $id=DB::table("user")->insertGetId($data)){
+            //$id = DB::table('user')->insertGetId($data);
+            //dd($id);
+            DB::table("user_group")->insert(["uid"=>$id,"groupid"=>$request->get('groupid')]);
 	    return redirect("/user_list");
 	} else {
 	    return back()->with(["info"=>"插入失败"]);
@@ -88,8 +94,11 @@ class UserController extends Controller
     public function edit($id)
     {
         //编辑页面
-	$user = DB::table("user")->where("uid",$id)->first();
-	return view("admin/user/edit",compact("user"));
+	$user = DB::table("user")
+                ->leftJoin("user_group","user.uid","=","user_group.uid")
+                ->where("user.uid",$id)->first();
+         $groups = DB::table("group_rule")->get();
+	return view("admin/user/edit",["user"=>$user,"groups" => $groups]);
 	
     }
 
@@ -113,13 +122,14 @@ class UserController extends Controller
 	    "repassword.same"=>"两次密码不一致！",
 	    "nickname.required"=>"昵称不能为空！"
 	]);
-	$data = $request->except("_token","repassword","uname");
+	$data = $request->except("_token","repassword","uname","groupid");
 	if(!empty($data["password"])){
-	    $data["password"]=Hash::make($data[password]);
+	    $data["password"]=Hash::make($data['password']);
 	} else {
 	    unset($data["password"]);
 	}
-	if(DB::table("user")->where("uid",$id)->update($data)){
+	if(false !== $a=DB::table("user")->where("uid",$id)->update($data)){
+            DB::table("user_group")->where("uid",$id)->update(["groupid"=>$request->get("groupid")]);
 	    return redirect("/user_list");
 	} else {
 	    return back()->with(["info"=>"/(ㄒoㄒ)/~~修改失败!"]);
@@ -163,5 +173,13 @@ class UserController extends Controller
 	$user->save();
 	//返回结果集
 	echo json_encode(array("startus" => true,"info" => "/uploads/avartar/" . $name));
+    }
+    public function setGroup(Request $request)
+    {
+      if(false !== DB::table("user_group")->where("uid",$request->get('uid'))->update(["groupid"=>$request->get('groupid')])){
+          return response()->json(["status" => 1, "info" => "修改成功"]);
+      }else{
+          return response()->json(["status" => 0, "info" => "修改失败"]);
+      }
     }
 }

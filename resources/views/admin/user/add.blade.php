@@ -93,16 +93,16 @@ li {list-style:none;}
         </td>
         </tr>
       
-<!--      <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
-        <td align="right" valign="middle" class="borderright borderbottom bggray">用户权限：</td>
+      <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
+        <td align="right" valign="middle" class="borderright borderbottom bggray">用户分组：</td>
         <td align="left" valign="middle" class="borderright borderbottom main-for">
-        <select name="level" id="level">
-	    <option value="1" >&nbsp;&nbsp;信息录入员</option>
-	    <option value="2" >&nbsp;&nbsp;一般管理员</option>
-	    <option value="3" >&nbsp;&nbsp;超级管理员</option>
-        </select>
+            <select name="groupid">
+                @foreach($groups as $group)
+                <option value="{{$group->id}}">{{$group->title}}</option>
+                @endforeach
+            </select>
         </td>
-      </tr>-->
+      </tr>
       <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
         <td align="right" valign="middle" class="borderright borderbottom bggray">&nbsp;</td>
         <td align="left" valign="middle" class="borderright borderbottom main-for">

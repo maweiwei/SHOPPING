@@ -8,7 +8,7 @@ class Kernel extends HttpKernel
 {
     /**
      * The application's global HTTP middleware stack.
-     *
+     *全局路由中间件
      * @var array
      */
     protected $middleware = [
@@ -18,11 +18,12 @@ class Kernel extends HttpKernel
         \Illuminate\Session\Middleware\StartSession::class,
         \Illuminate\View\Middleware\ShareErrorsFromSession::class,
         \App\Http\Middleware\VerifyCsrfToken::class,
+        \App\Http\Middleware\CommonMiddleware::class,
     ];
 
     /**
      * The application's route middleware.
-     *
+     *指定路由中间件
      * @var array
      */
     protected $routeMiddleware = [

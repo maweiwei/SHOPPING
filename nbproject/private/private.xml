@@ -3,9 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/wamp/www/SHOPPING/public/css/home/login/denglu.css</file>
-            <file>file:/D:/wamp/www/SHOPPING/app/Http/routes.php</file>
-            <file>file:/D:/wamp/www/SHOPPING/public/css/home/create/zhuce.css</file>
+            <file>file:/E:/WAMP-PHP/wamp/www/SHOPPING/app/Http/routes.php</file>
+            <file>file:/E:/WAMP-PHP/wamp/www/SHOPPING/resources/views/admin/rule/edit.blade.php</file>
+            <file>file:/E:/WAMP-PHP/wamp/www/SHOPPING/resources/views/admin/rule/index.blade.php</file>
+            <file>file:/E:/WAMP-PHP/wamp/www/SHOPPING/resources/views/errors/error.blade.php</file>
+            <file>file:/E:/WAMP-PHP/wamp/www/SHOPPING/resources/views/admin/common/left.blade.php</file>
+            <file>file:/E:/WAMP-PHP/wamp/www/SHOPPING/app/Http/Controllers/Admin/RuleController.php</file>
+            <file>file:/E:/WAMP-PHP/wamp/www/SHOPPING/public/js/admin/rule_index.js</file>
+            <file>file:/E:/WAMP-PHP/wamp/www/SHOPPING/app/Http/Middleware/CommonMiddleware.php</file>
         </group>
     </open-files>
 </project-private>

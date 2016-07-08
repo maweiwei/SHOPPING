@@ -36,7 +36,7 @@ ul {list-style: none;}
     <td align="left" valign="top" width="50%">
     <div class="main-tit">用户头像</div>
     <div class="main-con">
-   <img src="{{session('userData')->avartar}}" width="200" height="200"><br/><input type="file" name="myfile"></br>	
+   <img src="{{session('userData')->avartar}}" width="100"><br/><input type="file" name="myfile"></br>	
 管理员个数：<font color="#538ec6"><strong>6</strong></font> 人<br/>
 
     </div>
@@ -47,9 +47,9 @@ ul {list-style: none;}
         <!--用户详情-->
         <ul style="color:gray;">
 	    <form>
-            <li>用户名：<input type="text" name="uname" disabled value="{{session('userData')->uname}}"/></li>
-            <li>昵&nbsp&nbsp&nbsp称：<input type="text" name="nickname" value="{{session('userData')->nickname}}"/></li>
-	    <li>性&nbsp&nbsp&nbsp别：<input type="text" name="sex" value="{{session('userData')->sex}}"/></li>
+            <li>用&nbsp户&nbsp名：<input type="text" name="uname" disabled value="{{session('userData')->uname}}"/></li>
+            <li>昵&nbsp&nbsp&nbsp称：<input type="text" disabled name="nickname" value="{{session('userData')->nickname}}"/></li>
+	    <li>性&nbsp&nbsp&nbsp别：<input type="text" disabled name="sex" value="{{session('userData')->sex}}"/></li>
 	    <li><input type="submit" value="修改"></li>
 	    </form>
         </ul>
