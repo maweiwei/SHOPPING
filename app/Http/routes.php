@@ -59,8 +59,10 @@ Route::get("/right",function (){
 //前台首页
 Route::get("/Home","Home\IndexController@index");
 
-//前台登录
+//前台登录页面
 Route::get("/Home/login","Home\LoginController@index");
+//登录处理
+Route::post("/Home/logTodo","Home\LoginController@logTodo");
 
 //前台注册
 Route::get("/Home/create","Home\CreateController@index");

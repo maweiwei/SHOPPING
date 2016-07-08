@@ -3,9 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/wamp/www/SHOPPING/public/css/home/login/denglu.css</file>
-            <file>file:/D:/wamp/www/SHOPPING/app/Http/routes.php</file>
-            <file>file:/D:/wamp/www/SHOPPING/public/css/home/create/zhuce.css</file>
+            <file>file:/C:/wamp/www/SHOPPING/resources/views/home/login/login.blade.php</file>
+            <file>file:/C:/wamp/www/SHOPPING/resources/views/admin/common/right.blade.php</file>
         </group>
     </open-files>
 </project-private>

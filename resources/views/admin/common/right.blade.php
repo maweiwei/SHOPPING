@@ -33,24 +33,24 @@ ul {list-style: none;}
     </td>
   </tr>
   <tr>
-    <td align="left" valign="top" width="50%">
+    <td align="left" valign="top" width="5%">
     <div class="main-tit">用户头像</div>
     <div class="main-con">
-   <img src="{{session('userData')->avartar}}" width="200" height="200"><br/><input type="file" name="myfile"></br>	
+   <img src="{{session('userData')->avartar}}" width="150" height="150"><br/><input type="file" name="myfile"></br>	
 管理员个数：<font color="#538ec6"><strong>6</strong></font> 人<br/>
 
     </div>
     </td>
-    <td align="left" valign="top" width="49%">
+    <td align="left" valign="top" width="49">
     <div class="main-tit">用户信息</div>
     <div class="main-con">
         <!--用户详情-->
         <ul style="color:gray;">
 	    <form>
             <li>用户名：<input type="text" name="uname" disabled value="{{session('userData')->uname}}"/></li>
-            <li>昵&nbsp&nbsp&nbsp称：<input type="text" name="nickname" value="{{session('userData')->nickname}}"/></li>
-	    <li>性&nbsp&nbsp&nbsp别：<input type="text" name="sex" value="{{session('userData')->sex}}"/></li>
-	    <li><input type="submit" value="修改"></li>
+            <li>昵&nbsp&nbsp&nbsp称：<input type="text" name="nickname" disabled value="{{session('userData')->nickname}}"/></li>
+	    <li>性&nbsp&nbsp&nbsp别：<input type="text" name="sex" disabled value="{{session('userData')->sex}}"/></li>
+	    <a href=""><input type="button" name="btn" value="修改" style="border:none; background:gray;border-radius:5px;"></a>
 	    </form>
         </ul>
 
