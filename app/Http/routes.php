@@ -64,3 +64,5 @@ Route::get("/Home/login","Home\LoginController@index");
 
 //前台注册
 Route::get("/Home/create","Home\CreateController@index");
+//添加用户
+Route::post("/Home/user/add","Home\CreateController@add");

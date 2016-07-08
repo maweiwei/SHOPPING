@@ -21,7 +21,7 @@ class LoginController extends Controller
 	    //生成验证码图片的Builder对象，配置相应的属性
 	    $builder = new CaptchaBuilder;
 	    //可以设置图片宽高及字体
-	    $builder->build($width = 75,$height = 23,$font = "C:\Windows\Fonts\msyh.ttf");
+	    $builder->build($width = 75,$height = 23,$font =null);
 	    //获取验证码的内容
 	    $phrase = $builder->getPhrase();
 	    
