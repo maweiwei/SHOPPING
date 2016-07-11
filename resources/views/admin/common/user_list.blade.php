@@ -100,7 +100,6 @@ td.fenye li{ padding:10px 0 0 0; text-align:right;}
             
             <a href="/admin/user/delete/{{$tmp->uid}}" target="main" onFocus="this.blur()" class="add">删除</a></td>
       </tr>
-     
      @endforeach
     </table></td>
     </tr>

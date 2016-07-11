@@ -53,8 +53,8 @@ class LoginController extends Controller
 	    //如果验证失败 则跳回 并输出错误信息
             if ($result->fails())
 	    {
-//	        return back()->with(["info" => $result->errors()]);
-		return back()->with(["info" => "提示信息：**信息不合法！**"]);
+	        return back()->with(["info" => $result->errors()]);
+		//return back()->with(["info" => "提示信息：**信息不合法！**"]);
 	    }
 	    //账号是否存在 则回跳 并输出错误信息
 	    $userModel = new \App\User();

@@ -10,11 +10,6 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-//网站首页
-Route::get('/', function () {
-    return view('welcome');
-});
-
 //后台首页
 Route::get("/Admin","Admin\IndexController@index");
 //后台登录
@@ -81,10 +76,12 @@ Route::get("/right",function (){
 });
 
 //前台首页
-Route::get("/Home","Home\IndexController@index");
+Route::get("/","Home\IndexController@index");
 
-//前台登录
+//前台登录页面
 Route::get("/Home/login","Home\LoginController@index");
+//登录处理
+Route::post("/Home/logTodo","Home\LoginController@logTodo");
 
 //前台注册
 Route::get("/Home/create","Home\CreateController@index");
@@ -99,3 +96,16 @@ Route::get("/Home/user/edit/{uid}","Home\UserController@edit");
 Route::post("/Home/user/update/{uid}","Home\UserController@update");
 //前台用户删除
 Route::get("/Home/user/delete/{uid}","Home\UserController@destroy");
+//商品管理
+Route::get("/admin/goods","Admin\GoodsController@index");
+//添加商品页
+Route::get("/admin/goods/create","Admin\GoodsController@create");
+Route::post("/Home/goods/select","Admin\GoodsController@select");
+//添加商品动作
+Route::post("/admin/goods/add","Admin\GoodsController@add");
+//更改商品页
+Route::get("/admin/goods/update/{gid}","Admin\GoodsController@update");
+//更改商品动作
+Route::post("/admin/goods/updateing/{gid}","Admin\GoodsController@updateing");
+//删除商品
+Route::get("/admin/goods/delete/{gid}","Admin\GoodsController@delete");

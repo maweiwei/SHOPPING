@@ -122,7 +122,7 @@ window.attachEvent("onload", correctPNG);
                           </tr>
                           <tr>
                             <td width="13%" height="35" ><span class="login_txt">验证码：</span></td>
-                            <td height="35" colspan="2" class="top_hui_text"><img src="<?php echo e(url('/captcha')."/". rand()); ?>" id="code" onclick="this.src = this.src.replace(/\d+$/, '') + Math.random();" align="top" />&nbsp;&nbsp;<input class="wenbenkuang" name="code" type='text' value="" maxLength=5 size=6 id="code"><span></span></td>
+                            <td height="35" colspan="2" class="top_hui_text"><img src="<?php echo e(url('/captcha')."/". rand()); ?>" id="code" onclick="this.src = this.src.replace(/\d+$/, '') + Math.random();" align="top" />&nbsp;&nbsp;<input class="wenbenkuang" name="code" type='text' value="" maxLength=5 size=6 ><span></span></td>
                           </tr>
                           <tr>
                             <td height="35" >&nbsp;</td>
