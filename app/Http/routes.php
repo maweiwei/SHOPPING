@@ -116,4 +116,5 @@ Route::post("/Admin/category/setIsNav","Admin\CategoryController@setIsNav");
 Route::get("/Admin/category/child/{cid}","Admin\CategoryController@create");
 //删除分类
 Route::get("/Admin/category/delete/{cid}","Admin\CategoryController@destroy");
+//验证前台注册账号唯一
 Route::post("/Home/user/test","Home\CreateController@test");
