@@ -4,6 +4,15 @@
 		<title>注册页</title>
 		<meta charset="utf-8"/>
 		<link rel="stylesheet" type="text/css" href="{{asset('/css/home/create/zhuce.css')}}"/>
+		<script src="/uploadify/jquery-1.8.3.min.js"></script>
+		<meta name="csrf-token" content="{{ csrf_token() }}" />
+        <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        </script>
         </head>
 	<body>
 		<div id="body">
@@ -26,9 +35,9 @@
 						<a id="zjdl">已注册可直接登录</a>
                                                 <input type="hidden" name="_token" value="{{csrf_token()}}">
                                                 <br/>
-						<input class="a" type="tel" name="uname" value="" placeholder="&nbsp;请输入手机号码"/>
-                                                <span>
-                                                </span>
+						<input id="test" class="a" type="tel" name="uname" value="" placeholder="&nbsp;请输入账号"/><span></span>
+                                                
+                                                
 						<br/>
 						<input class="a" type="password" name="password" value="" placeholder="&nbsp;请输入登录密码">
 						<br/>
@@ -60,6 +69,6 @@
 			
 		</div>
 		
-		
+		<script src="/js/home/login/create.js"></script>
 	</body>
 </html>

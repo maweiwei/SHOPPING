@@ -10,6 +10,16 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+//网站首页
+Route::get('/', function () {
+    return view('welcome');
+});
+
+//调用系统的错误页
+Route::get("/tips", function (){
+    return view("errors.tips");
+    exit;
+});
 //后台首页
 Route::get("/Admin","Admin\IndexController@index");
 //后台登录
@@ -109,3 +119,12 @@ Route::get("/admin/goods/update/{gid}","Admin\GoodsController@update");
 Route::post("/admin/goods/updateing/{gid}","Admin\GoodsController@updateing");
 //删除商品
 Route::get("/admin/goods/delete/{gid}","Admin\GoodsController@delete");
+//商品分类
+Route::resource("/Admin/category","Admin\CategoryController");
+//商品导航
+Route::post("/Admin/category/setIsNav","Admin\CategoryController@setIsNav");
+//商品添加子类
+Route::get("/Admin/category/child/{cid}","Admin\CategoryController@create");
+//删除分类
+Route::get("/Admin/category/delete/{cid}","Admin\CategoryController@destroy");
+Route::post("/Home/user/test","Home\CreateController@test");
