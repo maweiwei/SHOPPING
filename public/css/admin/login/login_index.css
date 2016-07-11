@@ -1,6 +1,6 @@
 span.error {
     font:13px Arial;
-    color:gray;
+    color:red;
     background:url(/images/admin/login/error.gif) no-repeat left center;
     margin: 0 0 0 5px;
     padding: 0 0 0 15px;

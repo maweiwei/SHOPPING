@@ -15,6 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//调用系统的错误页
+Route::get("/tips", function (){
+    return view("errors.tips");
+    exit;
+});
+
 //后台首页
 Route::get("/Admin","Admin\IndexController@index");
 //后台登录
@@ -102,3 +108,12 @@ Route::post("/Home/user/update/{uid}","Home\UserController@update");
 //前台用户删除
 Route::get("/Home/user/delete/{uid}","Home\UserController@destroy");
 
+//商品分类
+Route::resource("/Admin/category","Admin\CategoryController");
+//商品导航
+Route::post("/Admin/category/setIsNav","Admin\CategoryController@setIsNav");
+//商品添加子类
+Route::get("/Admin/category/child/{cid}","Admin\CategoryController@create");
+//删除分类
+Route::get("/Admin/category/delete/{cid}","Admin\CategoryController@destroy");
+Route::post("/Home/user/test","Home\CreateController@test");
