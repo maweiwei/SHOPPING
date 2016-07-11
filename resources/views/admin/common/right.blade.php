@@ -5,6 +5,17 @@
 <link href="css/css.css" type="text/css" rel="stylesheet" />
 <link href="css/main.css" type="text/css" rel="stylesheet" />
 <link rel="shortcut icon" href="images/main/favicon.ico" />
+<script src="/uploadify/jquery-1.8.3.min.js"></script>
+<script type="text/css" rel="stylesheet" href="/uploadify/uploadify.css"></script>
+
+ <meta name="csrf-token" content="{{ csrf_token() }}" />
+        <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        </script>
 <style>
 body{overflow-x:hidden; background:#EDF0F3; padding:15px 0px 10px 5px;}
 #main{ font-size:12px;}
@@ -36,7 +47,11 @@ ul {list-style: none;}
     <td align="left" valign="top" width="5%">
     <div class="main-tit">用户头像</div>
     <div class="main-con">
-   <img src="{{session('userData')->avartar}}" width="150" height="150"><br/><input type="file" name="myfile"></br>	
+      <form>
+         <img src="{{session('userData')->avartar}}" width="150" height="150"><br/>
+         <input id="avartar" type="file" name="avartar"></br>
+         <input type="hidden" name="_token" value="{{csrf_token()}}">
+     </form>
 管理员个数：<font color="#538ec6"><strong>6</strong></font> 人<br/>
 
     </div>
@@ -67,5 +82,6 @@ ul {list-style: none;}
     </td>
   </tr>
 </table>
+<script src="/js/admin/index.js"></script>
 </body>
 </html>

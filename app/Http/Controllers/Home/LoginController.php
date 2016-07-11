@@ -35,11 +35,8 @@ class LoginController extends Controller
 //	    return back()->with(['info '=> $result->errors()]);
 //	}
 	//账号如果不存在 则跳回 并输出错误信息
-<<<<<<< HEAD
 	$userModel = DB::table("home_user")->where('uname',$data['uname'])->first();
-=======
-	$userModel = DB::table("home_user","user")->where('uname',$data['uname'])->first();
->>>>>>> 85837096b2e0816511f3107382174567475b6509
+	//$userModel = DB::table("home_user","user")->where('uname',$data['uname'])->first();
 	if (empty($userModel))
 	{
 	    $request->flash();

@@ -86,7 +86,7 @@ Route::get("/right",function (){
 });
 
 //前台首页
-Route::get("/","Home\IndexController@index");
+Route::get("/Home","Home\IndexController@index");
 
 //前台登录页面
 Route::get("/Home/login","Home\LoginController@index");
@@ -105,8 +105,6 @@ Route::get("/Home/user/edit/{uid}","Home\UserController@edit");
 Route::post("/Home/user/update/{uid}","Home\UserController@update");
 //前台用户删除
 Route::get("/Home/user/delete/{uid}","Home\UserController@destroy");
-<<<<<<< HEAD
-=======
 //商品管理
 Route::get("/admin/goods","Admin\GoodsController@index");
 //添加商品页
@@ -129,4 +127,3 @@ Route::get("/Admin/category/child/{cid}","Admin\CategoryController@create");
 //删除分类
 Route::get("/Admin/category/delete/{cid}","Admin\CategoryController@destroy");
 Route::post("/Home/user/test","Home\CreateController@test");
->>>>>>> 1c8a6cb1416dfe0836ac3abcfcb6a806454ebf8c
