@@ -101,4 +101,6 @@ Route::get("/Home/user/edit/{uid}","Home\UserController@edit");
 Route::post("/Home/user/update/{uid}","Home\UserController@update");
 //前台用户删除
 Route::get("/Home/user/delete/{uid}","Home\UserController@destroy");
+//前台用户个人信息
+Route::get("/Home/user/personal","Home\UserController@personal");
 

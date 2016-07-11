@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
 <html>
+  
 	<head>
 		<title>唯品会首页</title>
 		<meta charset="utf-8"/>
@@ -31,7 +32,11 @@
 							<li><a>|</a></li>
 							<li><a href="">我的收藏夹</a></li>
 							<li><a href="">我的订单</a></li>
-							<li><a href="{{url('/Home/login')}}">登录</a></li>
+                                                        @if(Session::has('homeUser'))<li><a href="{{url('/Home/user/personal')}}">个人中心</a></li>@else
+                                                        <li><a href="{{url('/Home/login')}}">登录</a></li>
+                                                     @endif
+                                                        
+                                                        
 						</ul>
 					</div>
 				</div>

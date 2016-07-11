@@ -120,4 +120,8 @@ class UserController extends Controller
             return back()->with(["info"=>"删除失败"]);
         }
     }
+    public function personal()
+    {
+        return view("home.user.personal");
+    }
 }
