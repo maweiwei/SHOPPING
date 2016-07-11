@@ -2,33 +2,18 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
-        <group/>
-=======
         <group>
-<<<<<<< HEAD
             <file>file:/E:/WAMP-PHP/wamp/www/SHOPPING/app/Http/routes.php</file>
             <file>file:/E:/WAMP-PHP/wamp/www/SHOPPING/resources/views/admin/rule/edit.blade.php</file>
             <file>file:/E:/WAMP-PHP/wamp/www/SHOPPING/resources/views/admin/rule/index.blade.php</file>
+            <file>file:/E:/WAMP-PHP/wamp/www/SHOPPING/app/Http/Controllers/Home/UserController.php</file>
             <file>file:/E:/WAMP-PHP/wamp/www/SHOPPING/resources/views/errors/error.blade.php</file>
             <file>file:/E:/WAMP-PHP/wamp/www/SHOPPING/resources/views/admin/common/left.blade.php</file>
             <file>file:/E:/WAMP-PHP/wamp/www/SHOPPING/app/Http/Controllers/Admin/RuleController.php</file>
             <file>file:/E:/WAMP-PHP/wamp/www/SHOPPING/public/js/admin/rule_index.js</file>
+            <file>file:/E:/WAMP-PHP/wamp/www/SHOPPING/app/Http/Controllers/Admin/UserController.php</file>
+            <file>file:/E:/WAMP-PHP/wamp/www/SHOPPING/resources/views/admin/common/right.blade.php</file>
             <file>file:/E:/WAMP-PHP/wamp/www/SHOPPING/app/Http/Middleware/CommonMiddleware.php</file>
-=======
-            <file>file:/D:/wamp/www/SHOPPING/resources/views/home/user/edit.blade.php</file>
-            <file>file:/D:/wamp/www/SHOPPING/resources/views/admin/index.blade.php</file>
-            <file>file:/D:/wamp/www/SHOPPING/app/Http/Controllers/Admin/UserController.php</file>
-            <file>file:/D:/wamp/www/SHOPPING/app/Http/Controllers/Admin/LoginController.php</file>
-            <file>file:/D:/wamp/www/SHOPPING/app/Http/Controllers/Admin/CommonController.php</file>
-            <file>file:/D:/wamp/www/SHOPPING/resources/views/home/user/user.blade.php</file>
-            <file>file:/D:/wamp/www/SHOPPING/app/Http/Controllers/Home/UserController.php</file>
-            <file>file:/D:/wamp/www/SHOPPING/app/Http/routes.php</file>
-            <file>file:/D:/wamp/www/SHOPPING/resources/views/admin/common/left.blade.php</file>
-            <file>file:/D:/wamp/www/SHOPPING/resources/views/admin/common/user_list.blade.php</file>
-            <file>file:/D:/wamp/www/SHOPPING/app/Http/Controllers/Admin/IndexController.php</file>
->>>>>>> 28ee714c013c7898822cc653817b517c3a19c924
         </group>
->>>>>>> e51203bf8d95f10a3a232579f89977425b5f426f
     </open-files>
 </project-private>
