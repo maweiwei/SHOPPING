@@ -15,6 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//调用系统的错误页
+Route::get("/tips", function (){
+    return view("errors.tips");
+    exit;
+});
 //后台首页
 Route::get("/Admin","Admin\IndexController@index");
 //后台登录
@@ -81,7 +86,7 @@ Route::get("/right",function (){
 });
 
 //前台首页
-Route::get("/Home","Home\IndexController@index");
+Route::get("/","Home\IndexController@index");
 
 //前台登录页面
 Route::get("/Home/login","Home\LoginController@index");
@@ -100,3 +105,28 @@ Route::get("/Home/user/edit/{uid}","Home\UserController@edit");
 Route::post("/Home/user/update/{uid}","Home\UserController@update");
 //前台用户删除
 Route::get("/Home/user/delete/{uid}","Home\UserController@destroy");
+<<<<<<< HEAD
+=======
+//商品管理
+Route::get("/admin/goods","Admin\GoodsController@index");
+//添加商品页
+Route::get("/admin/goods/create","Admin\GoodsController@create");
+Route::post("/Home/goods/select","Admin\GoodsController@select");
+//添加商品动作
+Route::post("/admin/goods/add","Admin\GoodsController@add");
+//更改商品页
+Route::get("/admin/goods/update/{gid}","Admin\GoodsController@update");
+//更改商品动作
+Route::post("/admin/goods/updateing/{gid}","Admin\GoodsController@updateing");
+//删除商品
+Route::get("/admin/goods/delete/{gid}","Admin\GoodsController@delete");
+//商品分类
+Route::resource("/Admin/category","Admin\CategoryController");
+//商品导航
+Route::post("/Admin/category/setIsNav","Admin\CategoryController@setIsNav");
+//商品添加子类
+Route::get("/Admin/category/child/{cid}","Admin\CategoryController@create");
+//删除分类
+Route::get("/Admin/category/delete/{cid}","Admin\CategoryController@destroy");
+Route::post("/Home/user/test","Home\CreateController@test");
+>>>>>>> 1c8a6cb1416dfe0836ac3abcfcb6a806454ebf8c

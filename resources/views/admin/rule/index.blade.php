@@ -56,7 +56,7 @@ td.fenye{ padding:10px 0 0 0; text-align:right;}
 	         <input type="submit" value="查询" class="text-but" style="background:gray;color:#FFF">
 	         </form>
          </td>
-  		  <td width="10%" align="center" valign="middle" style="text-align:right; width:150px;"><a href="add.html" target="mainFrame" onFocus="this.blur()" class="add">新增管理员</a></td>
+  		  <td width="10%" align="center" valign="middle" style="text-align:right; width:150px;"></td>
   		</tr>
 	</table>
     </td>

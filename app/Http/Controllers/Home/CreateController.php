@@ -129,4 +129,16 @@ class CreateController extends Controller
     {
         //
     }
+    
+    //注册用户检测
+    public function test(Request $request)
+    {
+	if(false != DB::table("home_user")->where("uname",$request->get("uname"))->first()){
+	    return response()->json(["status"=>false,"info"=>"此账户已存在"]);
+	}else{
+	    return response()->json(["status"=>true,"info"=>""]);
+	}
+	
+	
+    }
 }
