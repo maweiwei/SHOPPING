@@ -126,6 +126,6 @@ class CategoryController extends Controller
 	//将路径中包含该分类的全部去除
 	$affectedRows = DB::update("update category set path = replace(path,' ,{$id}', '') where path LIKE '%,{$id}%'");
 	//返回结果
-	return redirect("/tips")->with(["info" => "Update Ok.affected {$affectedRows} Line! ", "url" => "/Admin/category"]);
+	return redirect("/tips")->with(["info" => "Update Ok.affected". $affectedRows." Line! ", "url" => "/Admin/category"]);
     }
 }

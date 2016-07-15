@@ -124,4 +124,44 @@ class UserController extends Controller
     {
         return view("home.user.personal");
     }
+<<<<<<< HEAD
 }
+=======
+    public function perfect()
+    {
+        return view("home.user.perfect");
+    }
+    public function detail(Request $request)
+    {
+           //判断用户
+        $this->validate($request,[
+            "nickname" => "required|unique:home_user",
+            "phone" =>"between:10,11",
+        ],[
+             "nickname.required" =>"昵称不能为空",
+            "nickname.unique" =>"昵称已重复",
+            "phone.between" => "手机号必须为11位",
+        ]);
+        
+        $data = $request->except("_token");
+       // dd($data);
+        if(DB::table("home_user")->where("uid",$request->get('uid'))->update($data)){
+            $res = DB::table("home_user")->where("uid",$request->get('uid'))->first();
+            session(["homeUser"=>$res]);
+            return redirect("/Home/user/personal");
+        }else{
+            return back()->with(["info"=>"修改失败"]);
+        }
+    }
+    
+    public function site(Request $request)
+    {
+     //  dd($request->all());
+        $data = DB::table("good_adress")
+                ->where("uid",Session::get("homeUser")->uid)
+                ->get();
+       //dd($data);
+        return view("home.user.site",compact("data"));
+    }
+}
+>>>>>>> c98d5fcfb76f08a33d8a6cd67d450a680cf39a43
