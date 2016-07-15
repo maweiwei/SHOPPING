@@ -53,7 +53,7 @@
         </table>
         <ul class="MM">
           <li><a href="{{url('/Home/user')}}" target="main">用户列表</a></li>
-          <li><a href="" target="main">信息类型</a></li>
+          <li><a href="{{url("/Home/user/message")}}" target="main">商品评价</a></li>
           <li><a href="" target="main">资讯分类</a></li>
           <li><a href="" target="main">地区设置</a></li>
           <li><a target="main" href="">市场联盟</a></li>

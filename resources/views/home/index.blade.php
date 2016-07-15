@@ -30,9 +30,9 @@
 							<li><a href="">联名卡申请</a></li>
 							<li><a href="">唯品卡</a></li>
 							<li><a>|</a></li>
-							<li><a href="">我的收藏夹</a></li>
+							@if(Session::has('homeUser'))<li><a href="{{url("/Home/commodity/index")}}">我的收藏</a></li>
 							<li><a href="">我的订单</a></li>
-                                                        @if(Session::has('homeUser'))<li><a href="{{url('/Home/user/personal')}}">个人中心</a></li>@else
+                                                        <li><a href="{{url('/Home/user/personal')}}">个人中心</a></li>@else
                                                         <li><a href="{{url('/Home/login')}}">登录</a></li>
                                                      @endif
                                                         

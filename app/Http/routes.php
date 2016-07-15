@@ -11,9 +11,9 @@
 |
 */
 //网站首页
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
 //调用系统的错误页
 Route::get("/tips", function (){
@@ -33,6 +33,7 @@ Route::post("/logTodo","Admin\LoginController@logTodo");
 Route::get("/logout","Admin\LoginController@logout");
 //修改头像
 Route::post("/user/avartar","Admin\UserController@avartar");
+
 
 //用户列表页
 Route::any("/user_list","Admin\UserController@index");
@@ -105,13 +106,32 @@ Route::get("/Home/user/edit/{uid}","Home\UserController@edit");
 Route::post("/Home/user/update/{uid}","Home\UserController@update");
 //前台用户删除
 Route::get("/Home/user/delete/{uid}","Home\UserController@destroy");
-<<<<<<< HEAD
+//前台用户评论后台展示
+Route::any("/Home/user/message","Home\MessageController@index");
+//前台用户评论删除
+Route::get("/Home/message/destroy/{mid}","Home\MessageController@destroy");
 //前台用户个人信息
 Route::get("/Home/user/personal","Home\UserController@personal");
+//前台用户个人完善
+Route::get("/Home/user/perfect","Home\UserController@perfect");
+Route::post("/Home/user/detail","Home\UserController@detail");
+//前台用户头像修改
+Route::any("/Home/user/avartar","Home\UserController@avartar");
+//收货地址展示页
+Route::any("/Home/user/site","Home\UserController@site");
+//收货地址添加控制
+Route::any("/Home/adress","Home\AdressController@create");
+//收货地址编辑展示页
+Route::get("/Home/adress/update/{id}","Home\AdressController@update");
+//收货地址修改页
+Route::post("/Home/adress/edit","Home\AdressController@edit");
+//收获地址删除
+Route::get("/Home/adress/destroy/{id}","Home\AdressController@destroy");
+//商品收藏展示页
+Route::any("/Home/commodity/index","Home\CommodetyController@index");
+//商品收藏删除页
+Route::get("/Home/commodity/destroy/{gid}","Home\CommodetyController@destroy");
 
-=======
-<<<<<<< HEAD
-=======
 //商品管理
 Route::get("/admin/goods","Admin\GoodsController@index");
 //添加商品页
@@ -134,5 +154,4 @@ Route::get("/Admin/category/child/{cid}","Admin\CategoryController@create");
 //删除分类
 Route::get("/Admin/category/delete/{cid}","Admin\CategoryController@destroy");
 Route::post("/Home/user/test","Home\CreateController@test");
->>>>>>> 1c8a6cb1416dfe0836ac3abcfcb6a806454ebf8c
->>>>>>> 46adae1c984f5417b4396a66c0a8d4b1d1f87767
+
