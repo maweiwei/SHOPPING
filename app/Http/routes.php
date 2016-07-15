@@ -1,65 +1,60 @@
 <?php
 
 /*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
-//网站首页
-Route::get('/', function () {
-    return view('welcome');
-});
-
+  |--------------------------------------------------------------------------
+  | Application Routes
+  |--------------------------------------------------------------------------
+  |
+  | Here is where you can register all of the routes for an application.
+  | It's a breeze. Simply tell Laravel the URIs it should respond to
+  | and give it the controller to call when that URI is requested.
+  |
+ */
 //调用系统的错误页
-Route::get("/tips", function (){
+Route::get("/tips", function () {
     return view("errors.tips");
     exit;
 });
 //后台首页
-Route::get("/Admin","Admin\IndexController@index");
+Route::get("/Admin", "Admin\IndexController@index");
 //后台登录
-Route::get("/login","Admin\LoginController@index");
+Route::get("/login", "Admin\LoginController@index");
 
 //验证码请求路由规则
-Route::get("/captcha/{tmp}","Admin\LoginController@captcha");
+Route::get("/captcha/{tmp}", "Admin\LoginController@captcha");
 //登录验证
-Route::post("/logTodo","Admin\LoginController@logTodo");
+Route::post("/logTodo", "Admin\LoginController@logTodo");
 //退出登录
-Route::get("/logout","Admin\LoginController@logout");
+Route::get("/logout", "Admin\LoginController@logout");
 //修改头像
-Route::post("/user/avartar","Admin\UserController@avartar");
+Route::post("/user/avartar", "Admin\UserController@avartar");
 
 //用户列表页
-Route::any("/user_list","Admin\UserController@index");
+Route::any("/user_list", "Admin\UserController@index");
 //添加用户页面
-Route::get("/admin/user/add","Admin\UserController@create");
+Route::get("/admin/user/add", "Admin\UserController@create");
 //执行添加
-Route::post("/admin/user/store","Admin\UserController@store");
+Route::post("/admin/user/store", "Admin\UserController@store");
 //编辑页面
-Route::get("/admin/user/edit/{uid}","Admin\UserController@edit");
-Route::post("/admin/user/update/{uid}","Admin\UserController@update");
+Route::get("/admin/user/edit/{uid}", "Admin\UserController@edit");
+Route::post("/admin/user/update/{uid}", "Admin\UserController@update");
 //删除用户
-Route::get("/admin/user/delete/{uid}","Admin\UserController@destroy");
+Route::get("/admin/user/delete/{uid}", "Admin\UserController@destroy");
 //===================权限管理=====================
-Route::post("/admin/user/setGroup","Admin\UserController@setGroup");
-Route::get("/errors",function(){
-   // dd(session("info"));
+Route::post("/admin/user/setGroup", "Admin\UserController@setGroup");
+Route::get("/errors", function() {
+    // dd(session("info"));
     return view("errors.error");
 });
 //============分组增删改查======================
 //分组列表详细信息显示
-Route::resource("/admin/group","Admin\GroupController");
+Route::resource("/admin/group", "Admin\GroupController");
 //分组列表里点击修改
-Route::post("/admin/group/setRule","Admin\GroupController@setRule");
+Route::post("/admin/group/setRule", "Admin\GroupController@setRule");
 //提交修改的值
-Route::post("/admin/group/update","Admin\GroupController@update");
+Route::post("/admin/group/update", "Admin\GroupController@update");
 //权限删除
-Route::get("/admin/group/delete/{tmp}","Admin\GroupController@destroy");
+Route::get("/admin/group/delete/{tmp}", "Admin\GroupController@destroy");
 //============权限======================
 //所有权限
 Route::resource("/admin/rule", "Admin\RuleController");
@@ -71,60 +66,79 @@ Route::post("/admin/rule/update", "Admin\RuleController@update");
 //删除
 Route::get("/admin/rule/delete/{tmp}", "Admin\RuleController@destroy");
 //后台top
-Route::get("/top",function (){
-   return view("admin.common.top"); 
+Route::get("/top", function () {
+    return view("admin.common.top");
 });
 
 //后台left
-Route::get("/left",function (){
-   return view("admin.common.left"); 
+Route::get("/left", function () {
+    return view("admin.common.left");
 });
 
 //后台right
-Route::get("/right",function (){
+Route::get("/right", function () {
     return view("admin.common.right");
 });
-
+//后台配置
+Route::get("/admin/config","Admin\ConfigController@index");
+//配置修改
+Route::get("/admin/config/date","Admin\ConfigController@date");
+Route::any("/admin/config/update","Admin\ConfigController@update");
+//logo修改
+Route::post("/admin/logo", "Admin\ConfigController@logo");
+//广告
+Route::get("/admin/gg/new","Admin\GgController@index");
 //前台首页
-Route::get("/","Home\IndexController@index");
-
+Route::get("/", "Home\IndexController@index");
+//前台商品类
+Route::get("/hone/category/{pid}", "Home\IndexController@category");
+Route::get("/hone/category/{pid}/{cid}", "Home\IndexController@childs");
+//搜索
+Route::any("/home/category", "Home\IndexController@cate");
+//商品详情页
+Route::get("/home/category/goods/{gid}", "Home\GoodsController@Index");
+//商品评价
+Route::get("/home/category/good/{gid}", "Home\GoodsController@good");
+//商品加入购物车
+Route::post("/Home/goods/incar", "Home\GoodsController@create");
 //前台登录页面
-Route::get("/Home/login","Home\LoginController@index");
+Route::get("/Home/login", "Home\LoginController@index");
 //登录处理
-Route::post("/Home/logTodo","Home\LoginController@logTodo");
+Route::post("/Home/logTodo", "Home\LoginController@logTodo");
 
 //前台注册
-Route::get("/Home/create","Home\CreateController@index");
+Route::get("/Home/create", "Home\CreateController@index");
 //添加用户
-Route::post("/Home/user/add","Home\CreateController@add");
-
+Route::post("/Home/user/add", "Home\CreateController@add");
 //前台用户列表
-Route::any("/Home/user","Home\UserController@index");
+Route::any("/Home/user", "Home\UserController@index");
 
 //前台用户修改
-Route::get("/Home/user/edit/{uid}","Home\UserController@edit");
-Route::post("/Home/user/update/{uid}","Home\UserController@update");
+Route::get("/Home/user/edit/{uid}", "Home\UserController@edit");
+Route::post("/Home/user/update/{uid}", "Home\UserController@update");
 //前台用户删除
-Route::get("/Home/user/delete/{uid}","Home\UserController@destroy");
+Route::get("/Home/user/delete/{uid}", "Home\UserController@destroy");
+//前台用户个人信息
+Route::get("/Home/user/personal", "Home\UserController@personal");
 //商品管理
-Route::get("/admin/goods","Admin\GoodsController@index");
+Route::get("/admin/goods", "Admin\GoodsController@index");
 //添加商品页
-Route::get("/admin/goods/create","Admin\GoodsController@create");
-Route::post("/Home/goods/select","Admin\GoodsController@select");
+Route::get("/admin/goods/create", "Admin\GoodsController@create");
+Route::post("/Home/goods/select", "Admin\GoodsController@select");
 //添加商品动作
-Route::post("/admin/goods/add","Admin\GoodsController@add");
+Route::post("/admin/goods/add", "Admin\GoodsController@add");
 //更改商品页
-Route::get("/admin/goods/update/{gid}","Admin\GoodsController@update");
+Route::get("/admin/goods/update/{gid}", "Admin\GoodsController@update");
 //更改商品动作
-Route::post("/admin/goods/updateing/{gid}","Admin\GoodsController@updateing");
+Route::post("/admin/goods/updateing/{gid}", "Admin\GoodsController@updateing");
 //删除商品
-Route::get("/admin/goods/delete/{gid}","Admin\GoodsController@delete");
+Route::get("/admin/goods/delete/{gid}", "Admin\GoodsController@delete");
 //商品分类
-Route::resource("/Admin/category","Admin\CategoryController");
+Route::resource("/Admin/category", "Admin\CategoryController");
 //商品导航
-Route::post("/Admin/category/setIsNav","Admin\CategoryController@setIsNav");
+Route::post("/Admin/category/setIsNav", "Admin\CategoryController@setIsNav");
 //商品添加子类
-Route::get("/Admin/category/child/{cid}","Admin\CategoryController@create");
+Route::get("/Admin/category/child/{cid}", "Admin\CategoryController@create");
 //删除分类
-Route::get("/Admin/category/delete/{cid}","Admin\CategoryController@destroy");
-Route::post("/Home/user/test","Home\CreateController@test");
+Route::get("/Admin/category/delete/{cid}", "Admin\CategoryController@destroy");
+Route::post("/Home/user/test", "Home\CreateController@test");

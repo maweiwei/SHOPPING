@@ -1,3 +1,13 @@
+<?php
+    $link=mysqli_connect("192.168.142.56","lxf","111111") or die("数据库连接失败！");
+	mysqli_select_db($link,"lamp142");
+	mysqli_set_charset($link,"utf8");
+	$sql="select * from config where id=1";
+	$res=mysqli_query($link,$sql);
+	if($res && mysqli_num_rows($res)>0){
+            $rowt=mysqli_fetch_assoc($res);
+	}
+?>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -10,7 +20,7 @@
 		<div id="body">
 			<div id="head">
 				<div id="head-left">
-					<img src="{{asset('/images/home/login/4.png')}}"/>
+					<img src="<?php echo $rowt['logo']; ?>"   width="266" height="78"/>
 				</div>
 				<div id="head-right">
 				</div>

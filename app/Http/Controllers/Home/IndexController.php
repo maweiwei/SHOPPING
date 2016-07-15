@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
+use DB,Session,Hash;
 class IndexController extends Controller
 {
     /**
@@ -14,54 +14,55 @@ class IndexController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view("home.index");
+        $keyword = $request->get("keyword");
+        $category=DB::table("category")->where("pid",0)->get();
+        return view("home.index",["key"=>$keyword,"category"=>$category]);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    //前台分类页
+    public function category(Request $request,$pid)
     {
-        //
+        $keyword = $request->get("keyword");
+        $category=DB::table("category")->where("pid",0)->get();
+        $cate=DB::table("category")->where("category.pid",$pid)->get();
+        $goods=DB::table("goods")
+                ->leftJoin("category","category.cid","=","goods.cid")
+                ->where("category.pid",$pid)
+                ->paginate(20);
+        $count=DB::table("goods")
+                ->leftJoin("category","category.cid","=","goods.cid")
+                ->where("category.pid",$pid)
+                ->count("*");
+        return view("home.category",["key"=>$keyword,"category"=>$category,"cate"=>$cate,"goods"=>$goods,"count"=>$count]);
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    //前台分类子页
+    public function childs(Request $request,$pid,$cid)
     {
-        //
+        $keyword = $request->get("keyword");
+        $category=DB::table("category")->where("pid",0)->get();
+        $cate=DB::table("category")->where("category.pid",$pid)->get();
+        $goods=DB::table("goods")
+                ->where("goods.cid",$cid)
+                ->paginate(20);
+        $count=DB::table("goods")
+                ->where("goods.cid",$cid)
+                ->count("*");
+        return view("home.category",["key"=>$keyword,"category"=>$category,"cate"=>$cate,"goods"=>$goods,"count"=>$count]);
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    //搜索
+    public function cate(Request $request)
     {
-        //
+        $keyword = $request->get("keyword");
+        $category=DB::table("category")->where("pid",0)->get();
+        $goods=DB::table("goods")
+                ->where("name","like","%".$keyword."%")
+                ->paginate(20);
+        $count=DB::table("goods")
+                ->where("name","like","%".$keyword."%")
+                ->count("*");
+        return view("home.category",["key"=>$keyword,"category"=>$category,"goods"=>$goods,"count"=>$count]);
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
     /**
      * Update the specified resource in storage.
      *
