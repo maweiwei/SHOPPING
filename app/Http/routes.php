@@ -32,7 +32,9 @@ Route::post("/logTodo","Admin\LoginController@logTodo");
 //退出登录
 Route::get("/logout","Admin\LoginController@logout");
 //修改头像
-Route::post("/user/avartar","Admin\UserController@avartar");
+Route::any("/admin/user/avartar","Admin\UserController@avartar");
+//编辑里修改头像
+Route::any("/admin/user/edit_avartar","Admin\UserController@edit_avartar");
 
 //用户列表页
 Route::any("/user_list","Admin\UserController@index");
@@ -105,17 +107,22 @@ Route::get("/Home/user/edit/{uid}","Home\UserController@edit");
 Route::post("/Home/user/update/{uid}","Home\UserController@update");
 //前台用户删除
 Route::get("/Home/user/delete/{uid}","Home\UserController@destroy");
+//前台用户个人信息
+Route::get("/Home/user/personal","Home\UserController@personal");
+
 //商品管理
-Route::get("/admin/goods","Admin\GoodsController@index");
+Route::any("/admin/goods","Admin\GoodsController@index");
 //添加商品页
 Route::get("/admin/goods/create","Admin\GoodsController@create");
 Route::post("/Home/goods/select","Admin\GoodsController@select");
+Route::post("/Home/goods/add_img","Admin\GoodsController@store");
 //添加商品动作
 Route::post("/admin/goods/add","Admin\GoodsController@add");
 //更改商品页
 Route::get("/admin/goods/update/{gid}","Admin\GoodsController@update");
 //更改商品动作
 Route::post("/admin/goods/updateing/{gid}","Admin\GoodsController@updateing");
+Route::any("/Home/goods/img","Admin\GoodsController@edit");
 //删除商品
 Route::get("/admin/goods/delete/{gid}","Admin\GoodsController@delete");
 //商品分类
@@ -127,3 +134,6 @@ Route::get("/Admin/category/child/{cid}","Admin\CategoryController@create");
 //删除分类
 Route::get("/Admin/category/delete/{cid}","Admin\CategoryController@destroy");
 Route::post("/Home/user/test","Home\CreateController@test");
+//订单管理=======================================================================
+Route::resource("/Home/order","Home\OrderController");
+Route::any("/Home/order/index","Home\OrderController@index");

@@ -6,6 +6,8 @@
 <link href="css/main.css" type="text/css" rel="stylesheet" />
 <link rel="shortcut icon" href="images/main/favicon.ico" />
 <script src="/uploadify/jquery-1.8.3.min.js"></script>
+<script src="/uploadify/jquery.uploadify.min.js"></script>
+<script type="text/css" rel="stylesheet" href="/uploadify/uploadify.css"></script>
  <meta name="csrf-token" content="{{ csrf_token() }}" />
         <script>
         $.ajaxSetup({
@@ -67,7 +69,7 @@ li {list-style:none;}
   <tr>
     <td align="left" valign="top">
 
-    <form method="post" action="/admin/goods/add">
+    <form method="post" name="fm" action="/admin/goods/add">
         <input type="hidden" name="_token" value="{{csrf_token()}}">
     <table width="100%" border="0" cellspacing="0" cellpadding="0" id="main-tab">
       <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
@@ -109,12 +111,23 @@ li {list-style:none;}
         <input name="" type="submit" value="提交" class="text-but">
         <input name="" type="reset" value="重置" class="text-but"></td>
         </tr>
+         <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
+        <td align="right" valign="middle" class="borderright borderbottom bggray">商品图片：</td>
+        <td align="left" valign="middle" class="borderright borderbottom main-for">
+                 <input type="hidden" name="img" value="">
+                 <img id="img" src="" width="100"><br/>
+                 <input id="avartar" type="file" name="avartar"></br>
+        </td>
+      </tr>
+                 
     </table>
     </form>
+        
     </td>
     </tr>
 
 </table>
 <script src="/js/home/create.js"></script>
+<script src="/js/home/goods_add.js"></script>
 </body>
 </html>

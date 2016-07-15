@@ -80,7 +80,20 @@ class GoodsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //添加商品的图片
+        $avartar = $request->file("Filedata");
+	if (!$avartar->isValid()) {
+	   return response()->json(array("status" => false, "info" => "上传不合法"));
+	}
+	//重命名文件
+	$suffix = $avartar->getClientOriginalExtension();
+	$rename = date("YmdHis") . rand(1000,9999) . "." . $suffix;
+	//转存、返回结果集
+        if($avartar->move("./images/home/goods",$rename)){
+            echo json_encode(array("status" => true,"info" => "/images/home/goods/".$rename));
+        }else{
+             echo json_encode(array("status" => false,"info" => "上传失败"));
+        }
     }
 
     /**
@@ -100,9 +113,24 @@ class GoodsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
+        //上传商品图片
+        $avartar = $request->file("Filedata");
+	if (!$avartar->isValid()) {
+	   return response()->json(array("status" => false, "info" => "上传不合法"));
+	}
+	//重命名文件
+	$suffix = $avartar->getClientOriginalExtension();
+	$rename = date("YmdHis") . rand(1000,9999) . "." . $suffix;
+	//转存
+	$result = $avartar->move("./images/home/goods",$rename);
+	
+	//修改数据库
+        $user = DB::table("goods")->where("gid",$request->get("gid"))->update(["img"=>"/images/home/goods/".$rename]);
+       
+	//返回结果集
+	echo json_encode(array("status" => true,"info" => "/images/home/goods/".$rename));
     }
 
     /**
