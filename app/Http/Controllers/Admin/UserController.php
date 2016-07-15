@@ -159,24 +159,41 @@ class UserController extends Controller
     public function avartar(Request $request)
     {
 	//转存文件
-	$avartar = $request->file("avartar");
+	$avartar = $request->file("Filedata");
 	if (!$avartar->isValid()) {
-	    echo json_encode(array("status" => false,"info" => "上传不合法"));
-	    exit;
+	   return response()->json(array("status" => false, "info" => "上传不合法"));
 	}
 	//重命名文件
 	$suffix = $avartar->getClientOriginalExtension();
 	$rename = date("YmdHis") . rand(1000,9999) . "." . $suffix;
 	//转存
-	$result = $avartar->move("./uploads/avartar",$rename);
+	$result = $avartar->move("./images/avartar",$rename);
 	
 	//修改数据库
-	$userModel = new \App\User();
-	$user = $userModel->find($request->get("uid"));
-	$user->avartar = "/uploads/avartar/" . $rename;
-	$user->save();
+        $user = DB::table("user")->where("uid",$request->get("uid"))->update(["avartar"=>"/images/avartar/".$rename]);
+        $userRec = DB::table("user")->where("uid",$request->get("uid"))->first();
+        session(["userData"=>$userRec]);
 	//返回结果集
-	echo json_encode(array("startus" => true,"info" => "/uploads/avartar/" . $name));
+	echo json_encode(array("status" => true,"info" => "/images/avartar/".$rename));
+    }
+     public function edit_avartar(Request $request)
+    {
+	//转存文件
+	$avartar = $request->file("Filedata");
+	if (!$avartar->isValid()) {
+	   return response()->json(array("status" => false, "info" => "上传不合法"));
+	}
+	//重命名文件
+	$suffix = $avartar->getClientOriginalExtension();
+	$rename = date("YmdHis") . rand(1000,9999) . "." . $suffix;
+	//转存
+	$result = $avartar->move("./images/avartar",$rename);
+	
+	//修改数据库
+        $user = DB::table("user")->where("uid",$request->get("uid"))->update(["avartar"=>"/images/avartar/".$rename]);
+       
+	//返回结果集
+	echo json_encode(array("status" => true,"info" => "/images/avartar/".$rename));
     }
     public function setGroup(Request $request)
     {

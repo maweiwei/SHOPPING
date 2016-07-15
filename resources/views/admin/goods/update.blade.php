@@ -2,10 +2,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>主要内容区main</title>
-<link href="css/css.css" type="text/css" rel="stylesheet" />
-<link href="css/main.css" type="text/css" rel="stylesheet" />
-<link rel="shortcut icon" href="images/main/favicon.ico" />
 <script src="/uploadify/jquery-1.8.3.min.js"></script>
+<script src="/uploadify/jquery.uploadify.min.js"></script>
+<script type="text/css" rel="stylesheet" href="/uploadify/uploadify.css"></script>
  <meta name="csrf-token" content="{{ csrf_token() }}" />
         <script>
         $.ajaxSetup({
@@ -109,12 +108,25 @@ li {list-style:none;}
         <input name="" type="submit" value="提交" class="text-but">
         <input name="" type="reset" value="重置" class="text-but"></td>
         </tr>
-    </table>
+    
     </form>
+        <tr onMouseOut="this.style.backgroundColor='#ffffff'" onMouseOver="this.style.backgroundColor='#edf5ff'">
+        <td align="right" valign="middle" class="borderright borderbottom bggray">商品图片：</td>
+        <td align="left" valign="middle" class="borderright borderbottom main-for">
+             <form name="fm">
+                 <input type="hidden" name="gid" value="{{ $goods->gid }}">
+                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                 <img id="img" src="{{$goods->img}}" width="100"><br/>
+                 <input id="avartar" type="file" name="avartar"></br>
+             </form>
+        </td>
+      </tr>
+      </table>
     </td>
     </tr>
 
 </table>
 <script src="/js/home/create.js"></script>
+<script src="/js/home/goods.js"></script>
 </body>
 </html>

@@ -37,9 +37,26 @@ class LoginController extends Controller
 	//账号如果不存在 则跳回 并输出错误信息
 
 	$userModel = DB::table("home_user")->where('uname',$data['uname'])->first();
+<<<<<<< HEAD
 
 	$userModel = DB::table("home_user","user")->where('uname',$data['uname'])->first();
 
+=======
+	//$userModel = DB::table("home_user","user")->where('uname',$data['uname'])->first();
+=======
+<<<<<<< HEAD
+
+	$userModel = DB::table("home_user")->where('uname',$data['uname'])->first();
+//	$userModel = DB::table("home_user","user")->where('uname',$data['uname'])->first();
+=======
+<<<<<<< HEAD
+	$userModel = DB::table("home_user")->where('uname',$data['uname'])->first();
+=======
+	$userModel = DB::table("home_user","user")->where('uname',$data['uname'])->first();
+>>>>>>> 85837096b2e0816511f3107382174567475b6509
+>>>>>>> 3c5c63d32e70568e5cf6d23ba79ce6eba8b53457
+>>>>>>> 2948898854d95509f415060d026e242878b06474
+>>>>>>> c9e636ea5cf73c86efbeb0413cbee032ee026c27
 	if (empty($userModel))
 	{
 	    $request->flash();
@@ -51,8 +68,18 @@ class LoginController extends Controller
 	} else
 	{
 	    session(['homeUser' => $userModel]);
+<<<<<<< HEAD
+=======
+	   
+>>>>>>> c9e636ea5cf73c86efbeb0413cbee032ee026c27
 	    return redirect("/");
 	}
+    }
+    
+    //退出登录
+    public function logOut(){
+	Session::forget("homeUser");
+	return redirect("/");
     }
 
     /**

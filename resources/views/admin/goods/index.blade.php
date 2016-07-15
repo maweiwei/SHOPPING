@@ -51,10 +51,10 @@ td.fenye li{ padding:10px 0 0 0; text-align:right;}
     <table width="100%" border="0" cellspacing="0" cellpadding="0" id="search">
   		<tr>
    		 <td width="90%" align="left" valign="middle" bgcolor="#3C5E7C">
-	         <form method="post" action="{{asset('/admin/goods/index')}}">
+	         <form method="post" action="{{asset('/admin/goods')}}">
 	         <span>商品：</span>
 	         <input type="hidden" name="_token" value="{{csrf_token()}}">
-	         <input type="text" name="keyword" value="" class="text-word">
+	         <input type="text" name="keyword" value="{{$key}}" class="text-word">
 	         <input type="submit" value="查询" class="text-but" style="background:gray;color:#FFF">
 	         </form>
          </td>
@@ -99,6 +99,5 @@ td.fenye li{ padding:10px 0 0 0; text-align:right;}
    <td align="right" valign="top" class="fenye">{!!$goods->appends(["keyword"=>$key])->render()!!}</td>
   </tr>
 </table>
-<script src="{{asset('/js/admin/user_group.js')}}"></script>
 </body>
 </html>

@@ -2,22 +2,32 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>主要内容区main</title>
-<link href="css/css.css" type="text/css" rel="stylesheet" />
-<link href="css/main.css" type="text/css" rel="stylesheet" />
-<link rel="shortcut icon" href="images/main/favicon.ico" />
+
+<script src="/uploadify/jquery-1.8.3.min.js"></script>
+<script src="/uploadify/jquery.uploadify.min.js"></script>
+<script type="text/css" rel="stylesheet" href="/uploadify/uploadify.css"></script>
+
+ <meta name="csrf-token" content="{{ csrf_token() }}" />
+        <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        </script>
 <style>
 body{overflow-x:hidden; background:#EDF0F3; padding:15px 0px 10px 5px;}
 #main{ font-size:12px;}
 #main span.time{ font-size:14px; color:#528dc5; width:100%; padding-bottom:10px; float:left}
-#main div.top{ width:100%; background:url(images/main/main_r2_c2.jpg) no-repeat 0 10px; padding:0 0 0 15px; line-height:35px; float:left}
-#main div.sec{ width:100%; background:url(images/main/main_r2_c2.jpg) no-repeat 0 15px; padding:0 0 0 15px; line-height:35px; float:left}
+#main div.top{ width:100%; padding:0 0 0 15px; line-height:35px; float:left}
+#main div.sec{ width:100%; padding:0 0 0 15px; line-height:35px; float:left}
 .left{ float:left}
 #main div a{ float:left}
 #main span.num{  font-size:30px; color:#538ec6; font-family:"Georgia","Tahoma","Arial";}
 .left{ float:left}
-div.main-tit{ font-size:14px; font-weight:bold; color:#4e4e4e; background:url(images/main/main_r4_c2.jpg) no-repeat 0 33px; width:100%; padding:30px 0 0 20px; float:left}
+div.main-tit{ font-size:14px; font-weight:bold; color:#4e4e4e; width:100%; padding:30px 0 0 20px; float:left}
 div.main-con{ width:100%; float:left; padding:10px 0 0 20px; line-height:36px;}
-div.main-corpy{ font-size:14px; font-weight:bold; color:#4e4e4e; background:url(images/main/main_r6_c2.jpg) no-repeat 0 33px; width:100%; padding:30px 0 0 20px; float:left}
+div.main-corpy{ font-size:14px; font-weight:bold; color:#4e4e4e; width:100%; padding:30px 0 0 20px; float:left}
 div.main-order{ line-height:30px; padding:10px 0 0 0;}
 ul {list-style: none;}
 </style>
@@ -36,7 +46,12 @@ ul {list-style: none;}
     <td align="left" valign="top" width="5%">
     <div class="main-tit">用户头像</div>
     <div class="main-con">
-   <img src="{{session('userData')->avartar}}" width="150" height="150"><br/><input type="file" name="myfile"></br>	
+      <form name="fm">
+          <input type="hidden" name="uid" value="{{ session("userData")->uid }}">
+          <input type="hidden" name="_token" value="{{ csrf_token() }}">
+         <img id="img" src="{{session('userData')->avartar}}" width="100"><br/>
+         <input id="avartar" type="file" name="avartar"></br>
+     </form>
 管理员个数：<font color="#538ec6"><strong>6</strong></font> 人<br/>
 
     </div>
@@ -67,5 +82,6 @@ ul {list-style: none;}
     </td>
   </tr>
 </table>
+<script src="/js/admin/index.js"></script>
 </body>
 </html>

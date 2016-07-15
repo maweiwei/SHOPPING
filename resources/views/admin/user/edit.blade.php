@@ -5,6 +5,9 @@
 <link href="css/css.css" type="text/css" rel="stylesheet" />
 <link href="css/main.css" type="text/css" rel="stylesheet" />
 <link rel="shortcut icon" href="images/main/favicon.ico" />
+<script src="/uploadify/jquery-1.8.3.min.js"></script>
+<script src="/uploadify/jquery.uploadify.min.js"></script>
+<script type="text/css" rel="stylesheet" href="/uploadify/uploadify.css"></script>
 <style>
 body{overflow-x:hidden; background:#f2f0f5; padding:15px 0px 10px 5px;}
 #searchmain{ font-size:12px;}
@@ -109,8 +112,18 @@ td.fenye{ padding:10px 0 0 0; text-align:right;}
         </tr>
     </table>
     </form>
+       
     </td>
     </tr>
-</table>
+</table> 
+    <div style="margin-left: 130px;">
+        <form name="fm">
+            <img src="{{$user->avartar}}" width="150" id="img">
+            <input type="file" name="avartar" id="avartar" value="文件上传">
+            <input type="hidden" name="uid" value="{{ $user->uid }}">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+        </form>
+    </div>
+        <script src="/js/admin/edit.js"></script>
 </body>
 </html>
